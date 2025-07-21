@@ -19,10 +19,12 @@
 
   imports = [
     ./user/shell/bash.nix
+    ./user/app/git.nix
     ./user/shell/starship.nix
     ./user/shell/tmux.nix
     ./user/app/terminal/wezterm.nix
     ./user/app/neovim
+    ./user/app/lazygit
     ./user/wm/hyprland.nix
   ];
 
