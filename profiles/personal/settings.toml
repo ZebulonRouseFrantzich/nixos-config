@@ -1,0 +1,10 @@
+[system]
+profile = "personal"
+system = "x86_64-linux"
+hostname = "wilder-laptop"
+timezone = "America/Chicago"
+locale = "en_US.UTF-8"
+
+[user]
+username = "zrf"
+dotfilesDir = "~/nixos-config"

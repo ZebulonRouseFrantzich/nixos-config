@@ -6,19 +6,17 @@
 
   programs.tmux = {
     enable = true;
-    #terminal = "tmux-256color";
     terminal = "wezterm";
+
     historyLimit = 20000;
     prefix = "C-a";
     mouse = true;
     escapeTime = 0;
     baseIndex = 0;
-    #focusEvents = true;
-    focusEvents = false;
+    focusEvents = true;
     keyMode = "vi";
     aggressiveResize = true;
     
-   
     extraConfig = ''
       # automatically renumber tmux windows
       set -g renumber-windows on

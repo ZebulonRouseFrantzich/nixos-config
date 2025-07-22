@@ -1,0 +1,2 @@
+profiles/work/*
+!profiles/work/.gitkeep
