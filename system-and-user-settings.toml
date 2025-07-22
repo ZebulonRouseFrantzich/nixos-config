@@ -1,0 +1,16 @@
+# ---- SYSTEM DEFINITION ----
+[system]
+system = "x86_64-linux" # system arch
+hostname = "wilder-laptop" # hostname
+profile = "personal" # select a profile defined from my profiles directory
+timezone = "America/Chicago" # select timezone
+locale = "en_US.UTF-8" # select locale
+
+# ---- USER DEFINITION ----
+[user]
+username = "zrf" # username
+name = "Zebulon Rouse-Frantzich"
+email = "zebulonfrantzich@gmail.com"
+dotfilesDir = "~/nixos-config" # absolute path of the local repo
+term = "wezterm" # Default terminal command;
+editor = "nvim" # Default editor;

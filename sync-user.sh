@@ -4,6 +4,8 @@
 # with configuration files for nixos system
 # and home-manager
 
+echo 'Starting user sync!!'
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Fix root-owned sqlite errors
@@ -13,3 +15,5 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 home-manager switch --flake $SCRIPT_DIR#user;
 
 $SCRIPT_DIR/sync-posthook.sh
+
+echo 'Finished user sync!!'
