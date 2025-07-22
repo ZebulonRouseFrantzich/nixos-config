@@ -5,15 +5,22 @@
     # This pins your packages to a specific version of the nixpkgs repository.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland.url = "github:hyprwm/Hyprland";
 
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, nixos-wsl, hyprland, ... }@inputs: 
   let
     # Determine the current profile. Default to "personal".
     profileInfo = (
@@ -55,6 +62,7 @@
       };
       modules = [
         (./profiles/${systemSettings.profile}/configuration.nix) # load configuration.nix from selected PROFILE
+        nixos-wsl.nixosModules.default
         hyprland.nixosModules.default
       ];
     };
