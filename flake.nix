@@ -22,6 +22,8 @@
 
   outputs = { self, nixpkgs, home-manager, nixos-wsl, hyprland, ... }@inputs: 
   let
+    lib = nixpkgs.lib;
+
     # Determine the current profile. Default to "personal".
     profileInfo = (
       if builtins.pathExists ./host.toml
@@ -34,7 +36,7 @@
     profileSettings = builtins.fromTOML (builtins.readFile (./profiles/${profileInfo.profile}/settings.toml));
     
     # Merge the settings files. Profile settings override global settings.
-    allSettings = nixpkgs.lib.recursiveUpdate globalSettings profileSettings;
+    allSettings = lib.recursiveUpdate globalSettings profileSettings;
     
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = allSettings.system;
@@ -49,11 +51,36 @@
           allowUnfreePredicate = (_: true);
         };
       };
-    
+
+    # Helper function to help discover default.nix files for module construction.
+    discoverDefaultsForModules = basePath:
+      let
+        # A recursive helper to find all relevant directory paths.
+        findDirs = path:
+          let
+            entries = builtins.readDir path;
+            isModule = builtins.pathExists (path + "/default.nix");
+            currentDir = if isModule then [ path ] else [];
+            subDirs = lib.flatten (lib.mapAttrsToList (name: type:
+              if type == "directory" then findDirs (path + "/${name}") else []
+            ) entries);
+          in currentDir ++ subDirs;
+
+        # Get the list of all module directory paths.
+        # Example: [ ./user/app/neovim, ./user/shell/starship, ... ]
+        modulePaths = findDirs basePath;
+      in
+        # Convert the list of paths into an attribute set.
+        lib.listToAttrs (map (path: {
+          # 'name' will be the directory's name, e.g., "neovim".
+          name = lib.path.basename path;
+          # 'value' is the path to the module directory itself.
+          value = path;
+        }) modulePaths);
 
   in {
     # This is the main output that builds your NixOS system.
-    nixosConfigurations.system = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.system = lib.nixosSystem {
       system = systemSettings.system;
       specialArgs = {
         inherit systemSettings;
@@ -77,5 +104,7 @@
         (./profiles/${systemSettings.profile}/home.nix) # load home.nix from selected PROFILE
       ];
     };
+
+    homeManagerModules = discoverDefaultsForModules ./user;
   };
 }

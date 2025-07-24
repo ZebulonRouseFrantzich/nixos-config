@@ -9,14 +9,14 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ../../user/shell/bash.nix
-    ../../user/app/git.nix
-    ../../user/shell/starship.nix
-    ../../user/shell/tmux.nix
-    ../../user/app/terminal/wezterm.nix
+    ../../user/shell/bash
+    ../../user/app/git
+    ../../user/shell/starship
+    ../../user/shell/tmux
+    ../../user/app/terminal/wezterm
     ../../user/app/neovim
     ../../user/app/lazygit
-    ../../user/wm/hyprland.nix
+    ../../user/wm/hyprland
   ];
 
   home.sessionVariables = {
