@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, userSettings, homeManagerModules, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -8,15 +8,15 @@
 
   programs.home-manager.enable = true;
 
-  imports = [
-    ../../user/shell/bash
-    ../../user/app/git
-    ../../user/shell/starship
-    ../../user/shell/tmux
-    ../../user/app/terminal/wezterm
-    ../../user/app/neovim
-    ../../user/app/lazygit
-    ../../user/wm/hyprland
+  imports = with homeManagerModules; [
+    bash
+    git
+    starship
+    tmux
+    wezterm
+    neovim
+    lazygit
+    hyprland
   ];
 
   home.sessionVariables = {

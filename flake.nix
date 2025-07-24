@@ -52,6 +52,8 @@
         };
       };
 
+    homeManagerModules = discoverDefaultsForModules ./user;
+     
     # Helper function to help discover default.nix files for module construction.
     discoverDefaultsForModules = basePath:
       let
@@ -73,7 +75,7 @@
         # Convert the list of paths into an attribute set.
         lib.listToAttrs (map (path: {
           # 'name' will be the directory's name, e.g., "neovim".
-          name = lib.path.basename path;
+          name = builtins.baseNameOf path;
           # 'value' is the path to the module directory itself.
           value = path;
         }) modulePaths);
@@ -99,12 +101,13 @@
         inherit systemSettings;
         inherit userSettings;
         inherit inputs;
+        inherit homeManagerModules;
       };
       modules = [
         (./profiles/${systemSettings.profile}/home.nix) # load home.nix from selected PROFILE
       ];
     };
 
-    homeManagerModules = discoverDefaultsForModules ./user;
+    inherit homeManagerModules;
   };
 }
