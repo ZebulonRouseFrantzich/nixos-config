@@ -1,9 +1,11 @@
+{ nixCats }:
+
 { config, pkgs, lib, inputs, ... }:
 let
-  utils = inputs.nixCats.utils;
+  utils = nixCats.utils;
 in {
   imports = [
-    inputs.nixCats.homeModule
+    nixCats.homeModule
   ];
   config = {
     # this value, nixCats is the defaultPackageName you pass to mkNixosModules

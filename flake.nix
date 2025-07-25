@@ -20,7 +20,7 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-wsl, hyprland, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, nixos-wsl, nixCats, hyprland, ... }@inputs: 
   let
     lib = nixpkgs.lib;
 
@@ -52,33 +52,16 @@
         };
       };
 
-    homeManagerModules = discoverDefaultsForModules ./user;
-     
-    # Helper function to help discover default.nix files for module construction.
-    discoverDefaultsForModules = basePath:
-      let
-        # A recursive helper to find all relevant directory paths.
-        findDirs = path:
-          let
-            entries = builtins.readDir path;
-            isModule = builtins.pathExists (path + "/default.nix");
-            currentDir = if isModule then [ path ] else [];
-            subDirs = lib.flatten (lib.mapAttrsToList (name: type:
-              if type == "directory" then findDirs (path + "/${name}") else []
-            ) entries);
-          in currentDir ++ subDirs;
-
-        # Get the list of all module directory paths.
-        # Example: [ ./user/app/neovim, ./user/shell/starship, ... ]
-        modulePaths = findDirs basePath;
-      in
-        # Convert the list of paths into an attribute set.
-        lib.listToAttrs (map (path: {
-          # 'name' will be the directory's name, e.g., "neovim".
-          name = builtins.baseNameOf path;
-          # 'value' is the path to the module directory itself.
-          value = path;
-        }) modulePaths);
+    homeManagerModules = {
+      git = import ./user/app/git;
+      lazygit = import ./user/app/lazygit;
+      neovim = (import ./user/app/neovim) { inherit nixCats; };
+      wezterm = import ./user/app/terminal/wezterm;
+      bash = import ./user/shell/bash;
+      starship = import ./user/shell/starship/starship;
+      tmux = import ./user/shell/tmux;
+      hyprland = import ./user/wm/hyprland;
+    };
 
   in {
     # This is the main output that builds your NixOS system.
@@ -87,7 +70,6 @@
       specialArgs = {
         inherit systemSettings;
         inherit userSettings;
-        inherit inputs;
       };
       modules = [
         (./profiles/${systemSettings.profile}/configuration.nix) # load configuration.nix from selected PROFILE
