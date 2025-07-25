@@ -58,7 +58,7 @@
       neovim = (import ./user/app/neovim) { inherit nixCats; };
       wezterm = import ./user/app/terminal/wezterm;
       bash = import ./user/shell/bash;
-      starship = import ./user/shell/starship/starship;
+      starship = import ./user/shell/starship;
       tmux = import ./user/shell/tmux;
       hyprland = import ./user/wm/hyprland;
     };
