@@ -94,6 +94,20 @@
     packages = [];
     uid = 1000;
   };
+  
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    firefox
+    chromium
+    git
+    wine
+    _1password-gui
+    _1password-cli
+    orca-slicer
+  ];
 
   # Enable Hyprland
   programs.hyprland = {
@@ -103,12 +117,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Install 1Password
-  #nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #  "1password-gui"
-  #  "1password"
-  #];
 
   programs._1password-gui.enable = true;
   programs._1password.enable = true;
@@ -120,18 +128,7 @@
     # Hint to electron apps to use wayland
     NIXOS_OZONE_WL = "1";
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    firefox
-    git
-    _1password-gui
-    _1password-cli
-  ];
-
+  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -139,5 +136,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
