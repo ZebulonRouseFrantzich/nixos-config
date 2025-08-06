@@ -3,3 +3,5 @@
 require("zrf.config.keymaps")
 require("zrf.config.options")
 require("zrf.colors")
+
+require("zrf.plugins")
