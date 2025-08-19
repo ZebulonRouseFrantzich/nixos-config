@@ -61,8 +61,8 @@ in {
             go
           ];
           typescript = with pkgs; [
-            # typescript-tools-nvim
-            nodePackages.typescript-language-server
+            vimPlugins.typescript-tools-nvim
+            # nodePackages.typescript-language-server
           ];
         };
 
