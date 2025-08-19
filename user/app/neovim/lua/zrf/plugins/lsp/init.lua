@@ -15,8 +15,8 @@ end)
 local lsps_to_load = {
 	"nvim-lspconfig",
 	"lua_ls",
-	"gopls",
-	"nixd"
+	"nixd",
+	"typescript-tools"
 }
 local loaded_lsps = plugin_utils.getTablesFromFiles(lsps_to_load, "zrf.plugins.lsp.")
 require("lze").load(loaded_lsps)

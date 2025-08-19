@@ -40,6 +40,7 @@ in {
         # this includes LSPs
         lspsAndRuntimeDeps = {
           general = with pkgs; [
+            ripgrep
             lazygit
           ];
           lua = with pkgs; [
@@ -58,6 +59,9 @@ in {
             gotools
             go-tools
             go
+          ];
+          typescript = with pkgs.vimPlugins; [
+            typescript-tools-nvim
           ];
         };
 
@@ -156,6 +160,7 @@ in {
             general = true;
             lua = true;
             nix = true;
+            typescript = true;
             go = false;
           };
           # anything else to pass and grab in lua with `nixCats.extra`
