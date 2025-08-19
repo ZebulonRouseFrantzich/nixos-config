@@ -60,8 +60,9 @@ in {
             go-tools
             go
           ];
-          typescript = with pkgs.vimPlugins; [
-            typescript-tools-nvim
+          typescript = with pkgs; [
+            # typescript-tools-nvim
+            nodePackages.typescript-language-server
           ];
         };
 
@@ -85,6 +86,9 @@ in {
           ];
           lua = with pkgs.vimPlugins; [
             lazydev-nvim
+          ];
+          typescript = with pkgs.vimPlugins; [
+            # typescript-tools-nvim
           ];
           general = with pkgs.vimPlugins; [
             mini-nvim
