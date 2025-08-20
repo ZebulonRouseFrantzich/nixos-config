@@ -34,9 +34,9 @@ require('lze').load({
 })
 
 local lsps_to_load = {
-	"lua_ls",
-	"nixd",
-	"typescript-language-server"
+  "lua_ls",
+  "nixd",
+  "typescript-tools-nvim"
 }
 local loaded_lsps = plugin_utils.getTablesFromFiles(lsps_to_load, "zrf.plugins.lsp.")
 require("lze").load(loaded_lsps)

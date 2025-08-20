@@ -60,9 +60,6 @@ in {
             go-tools
             go
           ];
-          typescript = with pkgs; [
-            nodePackages.typescript-language-server
-          ];
         };
 
         # This is for plugins that will load at startup without using packadd:
@@ -74,6 +71,10 @@ in {
             #onedark-nvim
             tokyonight-nvim
             vim-sleuth
+            plenary-nvim
+          ];
+          typescript = with pkgs.vimPlugins; [
+            typescript-tools-nvim
           ];
         };
 
