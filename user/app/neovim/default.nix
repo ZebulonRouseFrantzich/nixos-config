@@ -60,6 +60,9 @@ in {
             go-tools
             go
           ];
+          ruby = with pkgs; [
+            ruby-lsp
+          ];
         };
 
         # This is for plugins that will load at startup without using packadd:
@@ -94,7 +97,6 @@ in {
             blink-cmp
             nvim-treesitter.withAllGrammars
             lualine-nvim
-            lualine-lsp-progress
             gitsigns-nvim
             which-key-nvim
             nvim-lint
@@ -162,7 +164,8 @@ in {
             lua = true;
             nix = true;
             typescript = true;
-            go = false;
+            go = true;
+            ruby = true;
           };
           # anything else to pass and grab in lua with `nixCats.extra`
           extra = {

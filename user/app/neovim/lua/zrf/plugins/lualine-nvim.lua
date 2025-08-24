@@ -8,7 +8,6 @@ return {
 	-- colorscheme = "",
 	load = function(name)
 		vim.cmd.packadd(name)
-		vim.cmd.packadd("lualine-lsp-progress")
 	end,
 	after = function(plugin)
 		require("lualine").setup({
@@ -19,6 +18,22 @@ return {
 				section_separators = "",
 			},
 			sections = {
+				lualine_b = {
+					{
+						'lsp_status',
+						icon = '', -- f013
+						symbols = {
+							-- Standard unicode symbols to cycle through for LSP progress:
+							spinner = { '⣾', '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣽' },
+							-- Standard unicode symbol for when LSP is done:
+							done = '✓',
+							-- Delimiter inserted between LSP names:
+							separator = ' ',
+						},
+						-- List of LSP names to ignore (e.g., `null-ls`):
+						ignore_lsp = {},
+					}
+				},
 				lualine_c = {
 					{
 						"filename",
@@ -39,7 +54,7 @@ return {
 			},
 			tabline = {
 				lualine_a = { "buffers" },
-				lualine_b = { "lsp_progress" },
+				lualine_b = { "lsp_status" },
 				lualine_z = { "tabs" },
 			},
 		})
