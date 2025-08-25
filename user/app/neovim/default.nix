@@ -60,8 +60,8 @@ in {
             go-tools
             go
           ];
-          typescript = with pkgs.vimPlugins; [
-            typescript-tools-nvim
+          ruby = with pkgs; [
+            ruby-lsp
           ];
         };
 
@@ -74,6 +74,10 @@ in {
             #onedark-nvim
             tokyonight-nvim
             vim-sleuth
+            plenary-nvim
+          ];
+          typescript = with pkgs.vimPlugins; [
+            typescript-tools-nvim
           ];
         };
 
@@ -93,7 +97,6 @@ in {
             blink-cmp
             nvim-treesitter.withAllGrammars
             lualine-nvim
-            lualine-lsp-progress
             gitsigns-nvim
             which-key-nvim
             nvim-lint
@@ -161,7 +164,8 @@ in {
             lua = true;
             nix = true;
             typescript = true;
-            go = false;
+            go = true;
+            ruby = true;
           };
           # anything else to pass and grab in lua with `nixCats.extra`
           extra = {

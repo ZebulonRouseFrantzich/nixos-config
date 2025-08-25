@@ -1,4 +1,3 @@
-
 local M = {}
 
 function M.lsp_on_attach(_, bufnr)
@@ -24,6 +23,9 @@ function M.lsp_on_attach(_, bufnr)
 		nmap("gI", function()
 			Snacks.picker.lsp_implementations()
 		end, "[G]oto [I]mplementation")
+		nmap("gd", function()
+			Snacks.picker.lsp_definitions()
+		end, "[G]oto [D]efinition")
 		nmap("<leader>ds", function()
 			Snacks.picker.lsp_symbols()
 		end, "[D]ocument [S]ymbols")
