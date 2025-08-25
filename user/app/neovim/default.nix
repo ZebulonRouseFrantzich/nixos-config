@@ -39,10 +39,7 @@ in {
         # at RUN TIME for plugins. Will be available to PATH within neovim terminal
         # this includes LSPs
         lspsAndRuntimeDeps = {
-          general = with pkgs; [
-            ripgrep
-            lazygit
-          ];
+          general = with pkgs; [ ];
           lua = with pkgs; [
             lua-language-server
             stylua
@@ -63,6 +60,11 @@ in {
           ruby = with pkgs; [
             ruby-lsp
           ];
+          snacks = with pkgs; [
+            ripgrep
+            imagemagick
+            fd
+          ];
         };
 
         # This is for plugins that will load at startup without using packadd:
@@ -75,6 +77,7 @@ in {
             tokyonight-nvim
             vim-sleuth
             plenary-nvim
+            nvim-web-devicons
           ];
           typescript = with pkgs.vimPlugins; [
             typescript-tools-nvim
@@ -104,6 +107,7 @@ in {
             nvim-dap
             nvim-dap-ui
             nvim-dap-virtual-text
+            grapple-nvim
           ];
         };
 
@@ -161,6 +165,7 @@ in {
           # and a set of categories that you want
           categories = {
             general = true;
+            snacks = true;
             lua = true;
             nix = true;
             typescript = true;
