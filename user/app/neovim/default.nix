@@ -82,6 +82,9 @@ in {
           typescript = with pkgs.vimPlugins; [
             typescript-tools-nvim
           ];
+          copilot = with pkgs.vimPlugins; [
+            copilot-vim
+          ];
         };
 
         # not loaded automatically at startup.
@@ -166,6 +169,7 @@ in {
           categories = {
             general = true;
             snacks = true;
+            copilot = true;
             lua = true;
             nix = true;
             typescript = true;
