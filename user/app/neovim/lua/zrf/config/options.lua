@@ -15,8 +15,8 @@ opt.inccommand = "split"
 -- Minimal number of screen lines to keep above and below the cursor.
 opt.scrolloff = 10
 
+opt.number = true
 opt.relativenumber = true
-opt.number = false
 
 -- Enable mouse mode
 opt.mouse = "a"
@@ -52,6 +52,8 @@ opt.completeopt = "menu,preview,noselect"
 
 opt.termguicolors = true
 
+opt.confirm = true
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -74,3 +76,32 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
 	end,
 })
+
+-- [[ Diagnostic config ]]
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config {
+	severity_sort = true,
+	float = { border = 'rounded', source = 'if_many' },
+	underline = { severity = vim.diagnostic.severity.ERROR },
+	signs = vim.g.have_nerd_font and {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '󰅚 ',
+			[vim.diagnostic.severity.WARN] = '󰀪 ',
+			[vim.diagnostic.severity.INFO] = '󰋽 ',
+			[vim.diagnostic.severity.HINT] = '󰌶 ',
+		},
+	} or {},
+	virtual_text = {
+		source = 'if_many',
+		spacing = 2,
+		format = function(diagnostic)
+			local diagnostic_message = {
+				[vim.diagnostic.severity.ERROR] = diagnostic.message,
+				[vim.diagnostic.severity.WARN] = diagnostic.message,
+				[vim.diagnostic.severity.INFO] = diagnostic.message,
+				[vim.diagnostic.severity.HINT] = diagnostic.message,
+			}
+			return diagnostic_message[diagnostic.severity]
+		end,
+	},
+}
