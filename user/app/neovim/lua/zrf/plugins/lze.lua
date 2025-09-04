@@ -13,7 +13,8 @@ local plugins_to_load = {
   "nvim-dap",
   "nvim-dap-go",
   "lazydev-nvim",
-  "grapple-nvim"
+  "grapple-nvim",
+  "render-markdown-nvim",
 }
 local loaded_plugins = plugin_utils.getTablesFromFiles(plugins_to_load, "zrf.plugins.")
 require("lze").load(loaded_plugins)

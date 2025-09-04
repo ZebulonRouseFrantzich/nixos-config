@@ -111,6 +111,7 @@ in {
             nvim-dap-ui
             nvim-dap-virtual-text
             grapple-nvim
+            render-markdown-nvim
           ];
         };
 
