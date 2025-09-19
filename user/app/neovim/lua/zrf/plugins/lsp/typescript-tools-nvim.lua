@@ -1,6 +1,9 @@
 return {
   "typescript-tools.nvim",
   enabled = nixCats("typescript") or false,
+  lsp = {
+    filetypes = { "typescript", "javascript" }
+  },
   after = function(plugin)
     require("typescript-tools").setup({
       on_attach = function(client, bufnr)

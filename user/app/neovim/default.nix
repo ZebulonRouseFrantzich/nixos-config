@@ -79,8 +79,9 @@ in {
             plenary-nvim
             nvim-web-devicons
           ];
-          typescript = with pkgs.vimPlugins; [
-            typescript-tools-nvim
+          typescript = with pkgs; [
+            typescript
+            vimPlugins.typescript-tools-nvim
           ];
           copilot = with pkgs.vimPlugins; [
             copilot-vim
