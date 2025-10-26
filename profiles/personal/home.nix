@@ -14,6 +14,7 @@
     starship
     tmux
     wezterm
+    direnv
     neovim
     lazygit
     hyprland

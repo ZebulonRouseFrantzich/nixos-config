@@ -15,6 +15,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # Nix store optimizations
+  nix.optimise.automatic = true;
+  nix.optimise.dates = [ "03:45" ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

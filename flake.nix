@@ -61,6 +61,7 @@
       starship = import ./user/shell/starship;
       tmux = import ./user/shell/tmux;
       hyprland = import ./user/wm/hyprland;
+      direnv = import ./user/shell/direnv;
     };
 
   in {
