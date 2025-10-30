@@ -17,7 +17,7 @@
     direnv
     neovim
     lazygit
-    hyprland
+    opencode
   ];
 
   home.sessionVariables = {
