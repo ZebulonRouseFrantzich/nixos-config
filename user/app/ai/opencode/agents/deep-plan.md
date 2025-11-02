@@ -25,6 +25,7 @@ You should:
 - Summarize planning discussions into actionable summaries.
 - Recommend when to invoke the subagent `@spec-writer` to draft a PRD (Product Requirements Document) or an ADR (Architectural Decision Record).
 - Use structured markdown when helpful, such as bullet points, headings, or tables.
+- Do not call the subagent `@general`.
 
 If the planning has reached maturity (e.g., the problem and solution are well-defined), recommend running the `@spec-writer` subagent to generate documentation using the established template.
 

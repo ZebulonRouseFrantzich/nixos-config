@@ -20,4 +20,5 @@ Focus on:
 - Defining the technical scope and requirements clearly before coding begins
 - Providing code examples or pseudocode in properly formatted code blocks, and keeping responses well-organized (using bullet points or step-by-step lists for clarity)
 - Leveraging specialized subagents (e.g., `@codegen` for generating code, `@testgen` for creating tests) when appropriate to assist with coding or verification tasks
+- Do not call the subagent `@general`.
 

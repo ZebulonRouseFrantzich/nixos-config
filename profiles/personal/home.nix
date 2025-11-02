@@ -22,22 +22,19 @@
   };
 
   # Example of overriding the opencode agent values:
-  #
   # programs.opencode.agentManagement.overrides = {
   #   deep-plan = {
-  #     model = "anthropic/claude-sonnet-4-20250514";
+  #     model = "anthropic/claude-sonnet-4-5";
   #     temperature = 0.5;
   #   };
-  #   code-reviewer = {
-  #     model = "anthropic/claude-sonnet-4-20250514";
-  #   };
-  #   spec-writer = {
-  #     model = "anthropic/claude-sonnet-4-20250514";
-  #   };
-  #   security-auditor = {
-  #     model = "anthropic/claude-sonnet-4-20250514";
-  #   };
   # };
-  
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+
+  programs.opencode.agentManagement.overrides = {
+    deep-plan = {
+      model = "anthropic/claude-sonnet-4-5";
+      temperature = 0.5;
+    };
+  };
+
+  home.stateVersion = "25.05"; # Don't change me without researching
 }
