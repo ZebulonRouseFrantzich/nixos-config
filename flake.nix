@@ -74,7 +74,7 @@
         inherit userSettings;
       };
       modules = [
-        (./profiles/${systemSettings.profile}/configuration.nix) # load configuration.nix from selected PROFILE
+        (./profiles/${systemSettings.profile}/configuration.nix)
         nixos-wsl.nixosModules.default
         hyprland.nixosModules.default
       ];

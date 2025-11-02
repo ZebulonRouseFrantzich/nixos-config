@@ -1,13 +1,9 @@
 { config, pkgs, userSettings, homeManagerModules, ... }:
-
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
-
   programs.home-manager.enable = true;
-
+  
   imports = with homeManagerModules; [
     bash
     git
@@ -19,39 +15,29 @@
     lazygit
     opencode
   ];
-
+  
   home.sessionVariables = {
     EDITOR = userSettings.editor;
     TERM = userSettings.term;
   };
 
-  programs.opencode = {
-    enable = true;
-    
-    agentOverrides = {
-      deep-plan = {
-        model = "anthropic/claude-sonnet-4-20250514";
-        temperature = 0.5;
-      };
-      code-reviewer = {
-        model = "anthropic/claude-sonnet-4-20250514";
-      };
-      spec-writer = {
-        model = "anthropic/claude-sonnet-4-20250514";
-      };
-      security-auditor = {
-        model = "anthropic/claude-sonnet-4-20250514";
-      };
-    };
-    # build, plan, test-specialist will use their default models from the .md files
-  };
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
+  # Example of overriding the opencode agent values:
   #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
+  # programs.opencode.agentManagement.overrides = {
+  #   deep-plan = {
+  #     model = "anthropic/claude-sonnet-4-20250514";
+  #     temperature = 0.5;
+  #   };
+  #   code-reviewer = {
+  #     model = "anthropic/claude-sonnet-4-20250514";
+  #   };
+  #   spec-writer = {
+  #     model = "anthropic/claude-sonnet-4-20250514";
+  #   };
+  #   security-auditor = {
+  #     model = "anthropic/claude-sonnet-4-20250514";
+  #   };
+  # };
+  
   home.stateVersion = "25.05"; # Please read the comment before changing.
 }
