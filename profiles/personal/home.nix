@@ -25,6 +25,27 @@
     TERM = userSettings.term;
   };
 
+  programs.opencode = {
+    enable = true;
+    
+    agentOverrides = {
+      deep-plan = {
+        model = "anthropic/claude-sonnet-4-20250514";
+        temperature = 0.5;
+      };
+      code-reviewer = {
+        model = "anthropic/claude-sonnet-4-20250514";
+      };
+      spec-writer = {
+        model = "anthropic/claude-sonnet-4-20250514";
+      };
+      security-auditor = {
+        model = "anthropic/claude-sonnet-4-20250514";
+      };
+    };
+    # build, plan, test-specialist will use their default models from the .md files
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
