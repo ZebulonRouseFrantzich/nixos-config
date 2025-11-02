@@ -63,8 +63,6 @@
       hyprland = import ./user/wm/hyprland;
       direnv = import ./user/shell/direnv;
       opencode = import ./user/app/ai/opencode;
-      claude-code = import ./user/app/ai/claude-code;
-      claude-code-agents = import ./user/app/ai/claude-code/agents;
     };
 
   in {
