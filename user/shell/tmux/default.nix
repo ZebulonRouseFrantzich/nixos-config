@@ -6,7 +6,7 @@
 
   programs.tmux = {
     enable = true;
-    terminal = "wezterm";
+    terminal = "tmux-256color";
 
     historyLimit = 20000;
     prefix = "C-a";
